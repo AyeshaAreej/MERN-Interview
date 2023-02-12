@@ -1,8 +1,21 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 export default function Profile() {
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
+  const id = localStorage.getItem("token");
+  console.log("this is id", id);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch(`http://localhost:8000/${id}`);
+      const user = await res.json();
+      setUser(user);
+    };
+    fetchUser();
+  }, []);
 
   // logout handler function
   function userLogout() {
@@ -33,7 +46,7 @@ export default function Profile() {
                 <input type="text" placeholder="Address" />
               </div>
 
-              <textarea placeholder="About"/>  
+              <textarea placeholder="About" />
               <button type="submit">Update</button>
             </div>
 

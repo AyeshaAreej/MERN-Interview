@@ -98,5 +98,21 @@ const updateUser = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) return res.status(404).send({ message: "User not found" });
+    res.send({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).send({ message: "Failed to delete user" });
+  }
+};
 
-module.exports = { signupPage, createUser, validateUser, allUsers, updateUser };
+module.exports = {
+  signupPage,
+  createUser,
+  validateUser,
+  allUsers,
+  updateUser,
+  deleteUser,
+};

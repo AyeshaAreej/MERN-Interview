@@ -4,11 +4,6 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      backgroundImage: {
-        homeBg: "url('/src/assets/home/section2bg.png')",
-        secfourBg: "url('/src/assets/home/Sec4Img.svg')",
-        banner: "url('/src/assets/home/Sec4Img.svg')",
-      },
       colors: {
         lightPink: "#EEE5E9",
         lightBlue: "#EDF7FF",

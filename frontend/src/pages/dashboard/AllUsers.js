@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import DeleteUser from "./DeleteUser";
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
 
@@ -18,7 +19,7 @@ const AllUsers = () => {
           <tr>
             <th className="px-4 py-2">Name</th>
             <th className="px-4 py-2">Email</th>
-            {/* <th className="px-4 py-2">Actions</th> */}
+            <th className="px-4 py-2">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -26,7 +27,9 @@ const AllUsers = () => {
             <tr key={user.email}>
               <td className="border px-4 py-2">{user.username}</td>
               <td className="border px-4 py-2">{user.email}</td>
-              {/* <td className="border px-4 py-2">Delete, Update,</td> */}
+              <td className="border px-4 py-2">
+                <DeleteUser id={user._id} />
+              </td>
             </tr>
           ))}
         </tbody>
