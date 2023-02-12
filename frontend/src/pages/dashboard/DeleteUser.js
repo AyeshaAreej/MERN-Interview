@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const DeleteUser = ({ id }) => {
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleDelete = async () => {
     try {
