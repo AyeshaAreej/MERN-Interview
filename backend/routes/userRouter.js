@@ -8,5 +8,6 @@ const route = express.Router();
 route.post("/register", userController.createUser);
 route.post("/loginn", userController.validateUser);
 route.get("/allUsers", userController.allUsers);
+route.patch("/:id", userController.updateUser);
 
 module.exports = route;

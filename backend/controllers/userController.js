@@ -70,9 +70,33 @@ const validateUser = async (req, res) => {
 const allUsers = async (req, res) => {
   console.log(req.body);
   User.find({}, (err, users) => {
-    if (err) return res.send(err);
+    if (err) {
+      console.log("error in signup");
+      return res.json({ status: "error", error: "error in signup" });
+    }
     res.json(users);
   });
 };
 
-module.exports = { signupPage, createUser, validateUser, allUsers };
+const updateUser = async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          username: req.body.username,
+          email: req.body.email,
+          phone: req.body.phone,
+          address: req.body.address,
+          about: req.body.about,
+        },
+      },
+      { new: true }
+    );
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+module.exports = { signupPage, createUser, validateUser, allUsers, updateUser };
